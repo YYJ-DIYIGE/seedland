@@ -1,58 +1,78 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+<div class="HelloWorld">
+  <div class="lateralNav">
+     <img src="@/assets/hamburger.png" @click="navLock = true" >
   </div>
+  <div class="navbar home">
+      <div class="navbar-left">
+        <img src="@/assets/Logo_Anim.gif">
+      </div>
+        <div class="menu">
+          <a class="menu-item" data-menuanchor="about" href="#about">关于实地</a>
+          <a class="menu-item" data-menuanchor="development" href="#development">地产开发</a>
+          <a class="menu-item" data-menuanchor="news" href="#news">最新消息</a>
+          <a class="menu-item" data-menuanchor="joinus" href="#joinus">加入实地</a>
+          <a class="menu-item" data-menuanchor="whistleblower" href="#whistleblower">廉洁举报</a>
+          <a class="menu-item" data-menuanchor="contact" href="#contact">联系我们</a>
+        </div>
+  </div>
+  <div class="landing-grid">
+    <div class="landing-Hgrid-box-center">
+      <div :class="['landing-Hgrid-c'+ index ,'landing-grid-horizontal', 'runcenterline']" v-for="index in 2" :key="index"></div>
+    </div> 
+    <div class="landing-Hgrid-box">
+      <div :class="['landing-Hgrid-' + index , 'landing-grid-horizontal', 'runh'+ index]" v-for="index in 3" :key="index"></div> 
+    </div> 
+    <div class="landing-Vgrid-box">
+      <div :class="['landing-Vgrid-' + index, 'landing-grid-vertical', 'runv'+ index]" v-for="index in 7" :key="index"></div>
+    </div>
+  </div>
+  <div class="landing-cross-box">
+    <p :class="'landing-cross' + index" v-for="index in 17" :key="index">+</p>
+  </div>
+  <div class="landing-boby">
+    <div class="landing-content">
+      <div class="landing-title">THE FUTURE</div>
+      <div class="landing-title">IS HERE</div>
+      <div class="landing-subTitle">未来•就在眼前</div>
+    </div>
+    <div class="landing-mousescroll">
+      <div class="landing-mousescrolltextcn">向下滚动</div>
+      <div class="landing-mousescrolltexten">Scroll down for more</div>
+      <span class="landing-scroll-btn">
+        <span class="landing-mouse">
+          <span></span>
+        </span>
+      </span>
+    </div>
+  </div>
+  <hide v-if="navLock" @close="closeNav" />
+</div>
 </template>
-
-<script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+<script type="text/javascript">
+  import hide from "@/components/hide.vue";
+  export default{
+    name: "HelloWorld",
+    components: {
+     hide
+    },
+    data(){
+      return{
+        navLock: false,
+        navbar:[
+        {title:'关于实地'},
+        {title:'地产开发'},
+        {title:'最新消息'},
+        {title:'加入实地'},
+        {title:'廉洁举报'},
+        {title:'联系我们'}
+        ]
+      } 
+    },
+  methods: {
+    closeNav(val) {
+      this.navLock = val;
+    }
+  },
   }
-}
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
